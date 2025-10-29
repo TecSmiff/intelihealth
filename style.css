@@ -1,0 +1,84 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9fcff;
+  color: #333;
+}
+
+header {
+  background: #2196f3;
+  color: white;
+  padding: 1em 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h1 {
+  font-size: 1.5em;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5em;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav ul li a.active, nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  text-align: center;
+  padding: 5em 1em;
+  background: linear-gradient(135deg, #2196f3, #00bfa5);
+  color: white;
+}
+
+.hero input {
+  padding: 0.7em;
+  width: 60%;
+  border: none;
+  border-radius: 6px;
+  margin-top: 1em;
+}
+
+.hero button {
+  padding: 0.7em 1.2em;
+  margin-left: 0.5em;
+  border: none;
+  border-radius: 6px;
+  background: white;
+  color: #2196f3;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.content {
+  padding: 2em;
+  max-width: 800px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  padding: 1.5em;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  margin-bottom: 1.5em;
+}
+
+footer {
+  text-align: center;
+  background: #2196f3;
+  color: white;
+  padding: 1em;
+  margin-top: 2em;
+}
