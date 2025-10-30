@@ -195,7 +195,102 @@ nav ul li a.active {
   color: #5a6c7d;
 }
 
-/* Cards */
+/* Medical Facility Cards */
+.facility-card {
+  background: white;
+  padding: 2.5em;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2em;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(33, 150, 243, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.facility-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(135deg, #2196f3, #00bfa5);
+}
+
+.facility-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.facility-card h3 {
+  font-size: 1.6em;
+  color: #2c3e50;
+  margin-bottom: 0.8em;
+  font-weight: 700;
+}
+
+.facility-card p {
+  color: #7f8c8d;
+  margin-bottom: 1.5em;
+  font-size: 1.1em;
+}
+
+.facility-type {
+  color: #007bff;
+  font-weight: bold;
+  font-size: 0.9em;
+  margin-bottom: 8px;
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  background: rgba(33, 150, 243, 0.1);
+  border-radius: 15px;
+}
+
+.contact-info {
+  background: #f8f9fa;
+  padding: 1.2em;
+  border-radius: 10px;
+  margin: 1em 0;
+  border-left: 4px solid #2196f3;
+}
+
+.contact-info p {
+  margin: 0.5em 0;
+  color: #555;
+  font-size: 1em;
+}
+
+.contact-info strong {
+  color: #2c3e50;
+}
+
+.book-btn {
+  background: linear-gradient(135deg, #2196f3, #00bfa5);
+  color: white;
+  border: none;
+  padding: 1em 2em;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
+  margin-top: 1em;
+}
+
+.book-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(33, 150, 243, 0.4);
+}
+
+/* Emergency Contact Styling */
+.facility-card .facility-type[style*="color: #dc3545"] {
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+}
+
+/* Regular Cards (for backward compatibility) */
 .card {
   background: white;
   padding: 2.5em;
@@ -343,8 +438,12 @@ footer a:hover {
     font-size: 2.2em;
   }
   
-  .card {
+  .facility-card, .card {
     padding: 1.5em;
+  }
+  
+  .contact-info {
+    padding: 1em;
   }
 }
 
@@ -365,6 +464,10 @@ footer a:hover {
   
   .content h2 {
     font-size: 1.8em;
+  }
+  
+  .facility-card h3, .card h3 {
+    font-size: 1.3em;
   }
 }
 
