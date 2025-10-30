@@ -84,17 +84,17 @@ nav ul li a.active {
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
-/* Hero Section */
-.hero {
+/* New Hero Section */
+#hero {
   text-align: center;
-  padding: 6em 2em;
-  background: linear-gradient(135deg, #2196f3 0%, #00bfa5 100%);
+  padding: 100px 20px;
+  background: linear-gradient(120deg, #004b7f, #00b4d8);
   color: white;
   position: relative;
   overflow: hidden;
 }
 
-.hero::before {
+#hero::before {
   content: '';
   position: absolute;
   top: 0;
@@ -105,7 +105,7 @@ nav ul li a.active {
   background-size: cover;
 }
 
-.hero h2 {
+#hero h1 {
   font-size: 3.5em;
   font-weight: 800;
   margin-bottom: 0.5em;
@@ -113,7 +113,7 @@ nav ul li a.active {
   position: relative;
 }
 
-.hero p {
+#hero p {
   font-size: 1.3em;
   margin-bottom: 2em;
   opacity: 0.95;
@@ -121,44 +121,25 @@ nav ul li a.active {
   position: relative;
 }
 
-.hero input {
-  padding: 1em 1.5em;
-  width: 50%;
-  max-width: 500px;
-  border: none;
-  border-radius: 50px;
-  margin-top: 1em;
-  font-size: 1.1em;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.hero input:focus {
-  outline: none;
-  transform: scale(1.02);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-}
-
-.hero button {
-  padding: 1em 2em;
-  margin-left: 1em;
-  border: none;
-  border-radius: 50px;
-  background: #ff6b35;
+.btn-primary {
+  background: #00b4d8;
   color: white;
-  cursor: pointer;
-  font-weight: 700;
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 20px;
   font-size: 1.1em;
   transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
   position: relative;
 }
 
-.hero button:hover {
-  background: #e55a2b;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(255, 107, 53, 0.5);
+.btn-primary:hover {
+  background: #0092b6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
 }
 
 /* How It Works Section */
@@ -450,18 +431,12 @@ footer a:hover {
     gap: 1em;
   }
   
-  .hero h2 {
+  #hero h1 {
     font-size: 2.5em;
   }
   
-  .hero input {
-    width: 80%;
-    margin-bottom: 1em;
-  }
-  
-  .hero button {
-    margin-left: 0;
-    width: 80%;
+  #hero p {
+    font-size: 1.1em;
   }
   
   .content {
@@ -491,12 +466,12 @@ footer a:hover {
 }
 
 @media (max-width: 480px) {
-  .hero h2 {
+  #hero h1 {
     font-size: 2em;
   }
   
-  .hero p {
-    font-size: 1.1em;
+  #hero p {
+    font-size: 1em;
   }
   
   nav ul {
@@ -515,6 +490,11 @@ footer a:hover {
   
   #how-it-works h2 {
     font-size: 2em;
+  }
+  
+  .btn-primary {
+    padding: 12px 25px;
+    font-size: 1em;
   }
 }
 
