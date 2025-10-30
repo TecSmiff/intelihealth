@@ -161,6 +161,56 @@ nav ul li a.active {
   box-shadow: 0 10px 25px rgba(255, 107, 53, 0.5);
 }
 
+/* How It Works Section */
+#how-it-works {
+  background: #e9f6ff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+#how-it-works h2 {
+  color: #004b7f;
+  margin-bottom: 40px;
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.step {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  max-width: 280px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(33, 150, 243, 0.1);
+}
+
+.step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.step h3 {
+  color: #007bff;
+  font-size: 1.4em;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.step p {
+  color: #5a6c7d;
+  line-height: 1.5;
+}
+
 /* Content Sections */
 .content {
   padding: 4em 2em;
@@ -284,12 +334,6 @@ nav ul li a.active {
   box-shadow: 0 10px 25px rgba(33, 150, 243, 0.4);
 }
 
-/* Emergency Contact Styling */
-.facility-card .facility-type[style*="color: #dc3545"] {
-  background: rgba(220, 53, 69, 0.1);
-  color: #dc3545;
-}
-
 /* Regular Cards (for backward compatibility) */
 .card {
   background: white;
@@ -377,31 +421,21 @@ nav ul li a.active {
 
 /* Footer */
 footer {
-  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
-  color: white;
-  padding: 3em 2em 2em;
   text-align: center;
-  margin-top: auto;
-}
-
-footer p {
-  margin: 0.5em 0;
-  font-size: 1.1em;
+  background: #f0f4f8;
+  color: #333;
+  padding: 20px 0;
+  font-size: 14px;
+  margin-top: 40px;
 }
 
 footer a {
-  color: #00bfa5;
+  color: #007bff;
   text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  padding: 0.3em 0.6em;
-  border-radius: 5px;
 }
 
 footer a:hover {
-  color: #2196f3;
-  background: rgba(255, 255, 255, 0.1);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 /* Responsive Design */
@@ -445,6 +479,15 @@ footer a:hover {
   .contact-info {
     padding: 1em;
   }
+  
+  .steps {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .step {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -468,6 +511,10 @@ footer a:hover {
   
   .facility-card h3, .card h3 {
     font-size: 1.3em;
+  }
+  
+  #how-it-works h2 {
+    font-size: 2em;
   }
 }
 
