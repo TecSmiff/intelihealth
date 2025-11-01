@@ -142,6 +142,76 @@ nav ul li a.active {
   box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
 }
 
+/* Find Care Search Section */
+#find-care {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #e9f6ff 0%, #d4edff 100%);
+}
+
+#find-care h1 {
+  font-size: 2.5em;
+  color: #004b7f;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+#find-care p {
+  font-size: 1.2em;
+  color: #5a6c7d;
+  margin-bottom: 30px;
+}
+
+#searchInput {
+  padding: 15px 20px;
+  width: 60%;
+  max-width: 500px;
+  border: 2px solid #007bff;
+  border-radius: 50px;
+  font-size: 1.1em;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.2);
+  transform: scale(1.02);
+}
+
+#suggestions {
+  list-style: none;
+  width: 60%;
+  max-width: 500px;
+  margin: 5px auto 0;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+#suggestions li {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#suggestions li:hover {
+  background: #f8f9fa;
+  color: #007bff;
+}
+
+#suggestions li:last-child {
+  border-bottom: none;
+}
+
 /* How It Works Section */
 #how-it-works {
   background: #e9f6ff;
@@ -315,6 +385,12 @@ nav ul li a.active {
   box-shadow: 0 10px 25px rgba(33, 150, 243, 0.4);
 }
 
+/* Emergency Contact Styling */
+.facility-card .facility-type[style*="color: #dc3545"] {
+  background: rgba(220, 53, 69, 0.1);
+  color: #dc3545;
+}
+
 /* Regular Cards (for backward compatibility) */
 .card {
   background: white;
@@ -439,6 +515,18 @@ footer a:hover {
     font-size: 1.1em;
   }
   
+  #find-care h1 {
+    font-size: 2em;
+  }
+  
+  #searchInput {
+    width: 80%;
+  }
+  
+  #suggestions {
+    width: 80%;
+  }
+  
   .content {
     padding: 2em 1em;
   }
@@ -474,6 +562,14 @@ footer a:hover {
     font-size: 1em;
   }
   
+  #find-care h1 {
+    font-size: 1.8em;
+  }
+  
+  #find-care p {
+    font-size: 1em;
+  }
+  
   nav ul {
     flex-direction: column;
     gap: 0.5em;
@@ -495,6 +591,15 @@ footer a:hover {
   .btn-primary {
     padding: 12px 25px;
     font-size: 1em;
+  }
+  
+  #searchInput {
+    width: 90%;
+    padding: 12px 15px;
+  }
+  
+  #suggestions {
+    width: 90%;
   }
 }
 
