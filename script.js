@@ -94,6 +94,11 @@ if (chatbotIcon && chatWindow) {
       appointment: [
         "You can book appointments through our platform - just visit the Find Care page!",
         "To book an appointment, find your preferred provider and click 'Book Appointment'."
+      ],
+      consultation: [
+        "I can help you book a virtual consultation right now!",
+        "Need a virtual consultation? Let me redirect you to our booking page.",
+        "You can request a virtual consultation with one of our healthcare professionals."
       ]
     };
 
@@ -104,6 +109,7 @@ if (chatbotIcon && chatWindow) {
     if (input.includes("eye") || input.includes("vision") || input.includes("see")) return random(responses.eye);
     if (input.includes("emergency") || input.includes("urgent") || input.includes("help")) return random(responses.emergency);
     if (input.includes("appointment") || input.includes("book") || input.includes("schedule")) return random(responses.appointment);
+    if (input.includes("consultation") || input.includes("virtual") || input.includes("online")) return random(responses.consultation);
 
     return "I'm still learning 🤖 — try asking about a specific service or location.";
   }
@@ -119,7 +125,18 @@ if (chatbotIcon && chatWindow) {
         const userMessage = userInput.value;
         appendMessage(userMessage, "user");
         const botResponse = getBotResponse(userMessage);
-        setTimeout(() => appendMessage(botResponse, "bot"), 500);
+        setTimeout(() => {
+          appendMessage(botResponse, "bot");
+          
+          // Add "Book Now" button for consultation responses
+          if (botResponse.includes("consultation")) {
+            const btn = document.createElement("button");
+            btn.textContent = "Book Now";
+            btn.onclick = () => window.location.href = "consult.html";
+            btn.style = "margin-top:5px;background:#00b4d8;color:white;padding:6px 10px;border:none;border-radius:5px;cursor:pointer;";
+            chatBody.appendChild(btn);
+          }
+        }, 500);
         userInput.value = "";
       }
     });
