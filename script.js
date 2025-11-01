@@ -89,20 +89,6 @@ if (chatbotIcon && chatWindow) {
   }
 }
 
-// === CONSULTATION FORM HANDLER ===
-const consultForm = document.getElementById("consultForm");
-
-if (consultForm) {
-  consultForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const formMessage = document.getElementById("formMessage");
-    if (formMessage) {
-      formMessage.textContent = "✅ Request submitted! We'll contact you shortly.";
-    }
-    consultForm.reset();
-  });
-}
-
 // Book appointment buttons
 document.addEventListener('DOMContentLoaded', function() {
   const bookButtons = document.querySelectorAll('.book-btn');
