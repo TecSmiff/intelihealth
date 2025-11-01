@@ -22,8 +22,16 @@
     </nav>
   </header>
 
+  <section id="find-care">
+    <h1>Find the Right Healthcare Service</h1>
+    <p>Search for a doctor, specialist, or clinic in Mauritius.</p>
+
+    <input type="text" id="searchInput" placeholder="Enter your need (e.g., dentist, flu, skin)">
+    <ul id="suggestions"></ul>
+  </section>
+
   <section class="content">
-    <h2>Find Medical Facilities in Mauritius</h2>
+    <h2>Medical Facilities in Mauritius</h2>
     
     <!-- Hospitals Section -->
     <h3>Regional Hospitals</h3>
@@ -293,6 +301,51 @@
         alert(`Booking appointment at: ${facilityName}\nType: ${facilityType}\n\nThis would redirect to the booking system in a real application.`);
         // In a real application, you would redirect to a booking page or open a modal
       });
+    });
+
+    // Search functionality for the new search section
+    const searchInput = document.getElementById('searchInput');
+    const suggestions = document.getElementById('suggestions');
+
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      suggestions.innerHTML = '';
+
+      if (searchTerm.length > 0) {
+        // Simple search suggestions (you can expand this)
+        const allSuggestions = [
+          'dentist', 'doctor', 'clinic', 'hospital', 'emergency',
+          'cardiology', 'neurology', 'pediatrics', 'dermatology',
+          'eye care', 'dentist port louis', 'clinic curepipe',
+          'skin specialist', 'heart doctor', 'child specialist'
+        ];
+
+        const filtered = allSuggestions.filter(suggestion => 
+          suggestion.toLowerCase().includes(searchTerm)
+        );
+
+        filtered.forEach(suggestion => {
+          const li = document.createElement('li');
+          li.textContent = suggestion;
+          li.style.cursor = 'pointer';
+          li.style.padding = '8px';
+          li.style.borderBottom = '1px solid #eee';
+          li.addEventListener('click', function() {
+            searchInput.value = suggestion;
+            suggestions.innerHTML = '';
+            // Here you could add actual search functionality
+            alert(`Searching for: ${suggestion}`);
+          });
+          suggestions.appendChild(li);
+        });
+      }
+    });
+
+    // Hide suggestions when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!searchInput.contains(e.target) && !suggestions.contains(e.target)) {
+        suggestions.innerHTML = '';
+      }
     });
   </script>
 </body>
