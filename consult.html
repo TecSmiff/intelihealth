@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Consultation | InteliHealth</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Virtual Consultation</h1>
+  </header>
+
+  <main id="consult-page">
+    <p>Fill out this form to request a consultation with one of our healthcare partners.</p>
+
+    <form id="consultForm">
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="text" id="issue" placeholder="Health Concern" required>
+      <textarea id="details" placeholder="Describe your issue" required></textarea>
+      <button type="submit">Submit Request</button>
+      <p id="formMessage"></p>
+    </form>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
