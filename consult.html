@@ -3,28 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Consultation | InteliHealth</title>
+  <meta name="description" content="InteliHealth – Your AI-powered healthcare concierge in Mauritius. Find doctors, clinics, and virtual consultations easily.">
+  <meta name="keywords" content="Mauritius healthcare, find doctor, clinic, hospital, virtual consultation, AI health">
+  <meta name="author" content="InteliHealth Mauritius">
+  <title>Virtual Consultation | InteliHealth</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Virtual Consultation</h1>
+    <nav>
+      <img src="assets/logo.png" alt="InteliHealth Logo" class="logo">
+      <h1>InteliHealth</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="findcare.html">Find Care</a></li>
+        <li><a href="consult.html" class="active">Virtual Consult</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main id="consult-page">
-    <p>Fill out this form to request a consultation with one of our healthcare partners.</p>
+  <section id="consult-page">
+    <h2>Virtual Consultation Request</h2>
+    <p>Fill out this form and we'll connect you with a healthcare professional.</p>
 
-    <form action="https://formspree.io/f/xrboovgb" method="POST" id="consultForm">
-      <input type="text" id="name" placeholder="Full Name" required>
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="text" id="issue" placeholder="Health Concern" required>
-      <textarea id="details" placeholder="Describe your issue" required></textarea>
-      <button type="submit">Submit Request</button>
-      <p id="formMessage"></p>
+    <form id="consultForm" action="https://formspree.io/f/xrboovgb" method="POST">
+      <input type="text" name="name" placeholder="Your Full Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="tel" name="phone" placeholder="Your Phone Number" required>
+      <textarea name="symptoms" placeholder="Describe your symptoms or concerns..." rows="4" required></textarea>
+      <button type="submit">Request Consultation</button>
     </form>
-  </main>
+  </section>
+
+  <footer>
+    <p>© 2025 InteliHealth | Made with ❤️ in Mauritius</p>
+    <p><a href="privacy.html">Privacy & Security</a></p>
+  </footer>
+
+  <!-- Chatbot -->
+  <div id="chatbot">
+    <div id="chatbot-icon">💬</div>
+    <div id="chat-window" class="hidden">
+      <div id="chat-header">InteliHealth Assistant</div>
+      <div id="chat-body"></div>
+      <input type="text" id="user-input" placeholder="Ask something...">
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
