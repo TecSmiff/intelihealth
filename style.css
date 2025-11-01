@@ -142,77 +142,6 @@ nav ul li a.active {
   box-shadow: 0 6px 20px rgba(0, 180, 216, 0.4);
 }
 
-/* Find Care Search Section */
-#find-care {
-  text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(135deg, #e9f6ff 0%, #d4edff 100%);
-}
-
-#find-care h1 {
-  font-size: 2.5em;
-  color: #004b7f;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
-
-#find-care p {
-  font-size: 1.2em;
-  color: #5a6c7d;
-  margin-bottom: 30px;
-}
-
-#searchInput {
-  padding: 15px 20px;
-  width: 60%;
-  max-width: 500px;
-  border: 2px solid #007bff;
-  border-radius: 50px;
-  font-size: 1.1em;
-  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1);
-  transition: all 0.3s ease;
-}
-
-#searchInput:focus {
-  outline: none;
-  border-color: #0056b3;
-  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.2);
-  transform: scale(1.02);
-}
-
-#suggestions {
-  list-style: none;
-  width: 60%;
-  max-width: 500px;
-  margin: 5px auto 0;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  max-height: 200px;
-  overflow-y: auto;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  display: none;
-}
-
-#suggestions li {
-  padding: 10px 15px;
-  border-bottom: 1px solid #eee;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-#suggestions li:hover {
-  background: #f8f9fa;
-  color: #007bff;
-}
-
-#suggestions li:last-child {
-  border-bottom: none;
-}
-
 /* How It Works Section */
 #how-it-works {
   background: #e9f6ff;
@@ -261,6 +190,36 @@ nav ul li a.active {
 .step p {
   color: #5a6c7d;
   line-height: 1.5;
+}
+
+/* FIND CARE PAGE */
+#find-care {
+  max-width: 700px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+#searchInput {
+  width: 90%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+#results {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: left;
 }
 
 /* Content Sections */
@@ -392,65 +351,6 @@ nav ul li a.active {
   color: #dc3545;
 }
 
-/* Regular Cards (for backward compatibility) */
-.card {
-  background: white;
-  padding: 2.5em;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  margin-bottom: 2em;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(33, 150, 243, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 5px;
-  height: 100%;
-  background: linear-gradient(135deg, #2196f3, #00bfa5);
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-}
-
-.card h3 {
-  font-size: 1.6em;
-  color: #2c3e50;
-  margin-bottom: 0.8em;
-  font-weight: 700;
-}
-
-.card p {
-  color: #7f8c8d;
-  margin-bottom: 1.5em;
-  font-size: 1.1em;
-}
-
-.card button {
-  background: linear-gradient(135deg, #2196f3, #00bfa5);
-  color: white;
-  border: none;
-  padding: 1em 2em;
-  border-radius: 50px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1em;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
-}
-
-.card button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(33, 150, 243, 0.4);
-}
-
 /* Lists */
 .content ul {
   list-style: none;
@@ -580,6 +480,34 @@ footer a:hover {
   outline: none;
 }
 
+/* CONSULTATION PAGE */
+#consult-page {
+  max-width: 600px;
+  margin: 50px auto;
+  text-align: center;
+}
+
+#consultForm input, #consultForm textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+#consultForm button {
+  background-color: #00b4d8;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#consultForm button:hover {
+  background-color: #0092b6;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   nav {
@@ -600,7 +528,7 @@ footer a:hover {
     font-size: 1.1em;
   }
   
-  #find-care h1 {
+  #find-care h2 {
     font-size: 2em;
   }
   
@@ -608,7 +536,7 @@ footer a:hover {
     width: 80%;
   }
   
-  #suggestions {
+  #results {
     width: 80%;
   }
   
@@ -652,7 +580,7 @@ footer a:hover {
     font-size: 1em;
   }
   
-  #find-care h1 {
+  #find-care h2 {
     font-size: 1.8em;
   }
   
@@ -688,7 +616,7 @@ footer a:hover {
     padding: 12px 15px;
   }
   
-  #suggestions {
+  #results {
     width: 90%;
   }
   
