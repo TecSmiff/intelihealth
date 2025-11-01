@@ -61,25 +61,55 @@ if (chatbotIcon && chatWindow) {
     chatWindow.classList.toggle("hidden");
   });
 
-  // Basic chatbot responses
+  // Enhanced chatbot responses
   function getBotResponse(input) {
     input = input.toLowerCase();
+    
+    const responses = {
+      greetings: [
+        "Hello 👋 How can I help you find care today?",
+        "Hi there! Need help finding a clinic or booking a consultation?",
+        "Hey! I'm here to guide you to the right healthcare service."
+      ],
+      dental: [
+        "Need dental care? You can check Port Louis Dental Centre or SmileBright Clinic.",
+        "For dental issues, I recommend seeing a general dentist or orthodontist nearby."
+      ],
+      hospital: [
+        "Hospitals nearby include Apollo Bramwell (Moka) and City Clinic (Port Louis).",
+        "You can use the Find Care page to locate hospitals near your area."
+      ],
+      flu: [
+        "For flu or fever, book a GP visit or request a virtual consultation.",
+        "Try home rest, hydration, and see a doctor if symptoms persist."
+      ],
+      eye: [
+        "For eye care, try VisionCare Clinic in Quatre Bornes or the Eye Hospital in Pamplemousses.",
+        "Eye specialists are available at several clinics - check our Find Care page for options."
+      ],
+      emergency: [
+        "For emergencies, call SAMU at 114 immediately!",
+        "Emergency services are available 24/7 - call 114 for urgent medical assistance."
+      ],
+      appointment: [
+        "You can book appointments through our platform - just visit the Find Care page!",
+        "To book an appointment, find your preferred provider and click 'Book Appointment'."
+      ]
+    };
 
-    if (input.includes("hello") || input.includes("hi")) {
-      return "Hello! 👋 How can I assist you with healthcare today?";
-    } else if (input.includes("dentist")) {
-      return "You can visit the nearest dental clinic — like Port Louis Dental Centre.";
-    } else if (input.includes("eye")) {
-      return "For eye specialists, try VisionCare Clinic in Quatre Bornes.";
-    } else if (input.includes("flu") || input.includes("cold")) {
-      return "For flu or general illness, book a consultation with a GP at Curepipe Family Clinic.";
-    } else if (input.includes("hospital")) {
-      return "Closest hospitals include Candos Hospital and City Clinic. Would you like directions?";
-    } else if (input.includes("virtual") || input.includes("online")) {
-      return "Yes, we offer virtual consultations! You can request one through our Find Care page.";
-    } else {
-      return "I'm still learning 🤖 — please try asking about a service, clinic, or condition.";
-    }
+    if (input.includes("hello") || input.includes("hi") || input.includes("hey")) return random(responses.greetings);
+    if (input.includes("dentist") || input.includes("tooth") || input.includes("dental")) return random(responses.dental);
+    if (input.includes("hospital") || input.includes("clinic") || input.includes("medical")) return random(responses.hospital);
+    if (input.includes("flu") || input.includes("fever") || input.includes("cold")) return random(responses.flu);
+    if (input.includes("eye") || input.includes("vision") || input.includes("see")) return random(responses.eye);
+    if (input.includes("emergency") || input.includes("urgent") || input.includes("help")) return random(responses.emergency);
+    if (input.includes("appointment") || input.includes("book") || input.includes("schedule")) return random(responses.appointment);
+
+    return "I'm still learning 🤖 — try asking about a specific service or location.";
+  }
+
+  function random(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
   }
 
   // Send message
