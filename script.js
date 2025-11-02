@@ -2,16 +2,21 @@
 async function loadProviders() {
   try {
     const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vSnDf8MPAfU_FoduKaYtpXuvCP5uSFl5cLxCMPQEUVnjjei3sCf-cqO-qwDobfFR1pKA0xEk5GgIKL1/pub?gid=0&single=true&output=csv');
+    
+    if (!response.ok) throw new Error('Network response was not ok');
+    
     const data = await response.text();
-    const rows = data.split('\n').slice(1);
+    const rows = data.split('\n').slice(1).filter(row => row.trim());
+    
     const providers = rows.map(row => {
-      const [name, type, location, contact] = row.split(',');
+      const [name, type, location, contact] = row.split(',').map(field => field.trim());
       return { name, type, location, contact };
-    });
+    }).filter(provider => provider.name && provider.type);
+    
     return providers;
   } catch (error) {
     console.error('Error loading providers:', error);
-    // Fallback to hardcoded data if Google Sheets fails
+    // Fallback data
     return [
       { name: "City Clinic", type: "Hospital", location: "Port Louis", contact: "210 5000" },
       { name: "Curepipe Family Clinic", type: "General Practice", location: "Curepipe", contact: "675 3322" },
@@ -22,43 +27,85 @@ async function loadProviders() {
   }
 }
 
-// Initialize search functionality
-loadProviders().then(providers => {
+// Initialize search functionality when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  initializeSearch();
+  initializeChatbot();
+  initializeBookingButtons();
+});
+
+// Search functionality
+async function initializeSearch() {
   const searchInput = document.getElementById("searchInput");
   const resultsDiv = document.getElementById("results");
 
-  if (searchInput && resultsDiv) {
+  if (!searchInput || !resultsDiv) return;
+
+  try {
+    const providers = await loadProviders();
+    
     searchInput.addEventListener("input", function () {
-      const query = this.value.toLowerCase();
+      const query = this.value.toLowerCase().trim();
+      
+      if (query.length < 2) {
+        resultsDiv.innerHTML = "";
+        return;
+      }
+
       const matches = providers.filter(p =>
         p.name.toLowerCase().includes(query) ||
         p.type.toLowerCase().includes(query) ||
         p.location.toLowerCase().includes(query)
       );
 
-      resultsDiv.innerHTML = matches.length
-        ? matches.map(p => `
-          <div class="card">
-            <h3>${p.name}</h3>
-            <p><strong>Type:</strong> ${p.type}</p>
-            <p><strong>Location:</strong> ${p.location}</p>
-            <p><strong>Contact:</strong> ${p.contact}</p>
-          </div>
-        `).join("")
-        : "<p>No matching providers found.</p>";
+      displaySearchResults(matches, resultsDiv);
     });
+
+    // Show initial message
+    resultsDiv.innerHTML = '<p style="text-align: center; color: #666;">Start typing to search for healthcare providers...</p>';
+    
+  } catch (error) {
+    console.error('Search initialization failed:', error);
+    resultsDiv.innerHTML = '<p style="text-align: center; color: #dc3545;">Unable to load providers. Please try again later.</p>';
   }
-});
+}
 
-// Chatbot toggle
-const chatbotIcon = document.getElementById("chatbot-icon");
-const chatWindow = document.getElementById("chat-window");
-const userInput = document.getElementById("user-input");
-const chatBody = document.getElementById("chat-body");
+function displaySearchResults(matches, container) {
+  if (matches.length === 0) {
+    container.innerHTML = '<p style="text-align: center; color: #666;">No matching providers found. Try different keywords.</p>';
+    return;
+  }
 
-if (chatbotIcon && chatWindow) {
+  container.innerHTML = matches.map(provider => `
+    <div class="search-card">
+      <h3>${provider.name}</h3>
+      <p><strong>Type:</strong> ${provider.type}</p>
+      <p><strong>Location:</strong> ${provider.location}</p>
+      <p><strong>Contact:</strong> ${provider.contact}</p>
+    </div>
+  `).join("");
+}
+
+// Chatbot functionality
+function initializeChatbot() {
+  const chatbotIcon = document.getElementById("chatbot-icon");
+  const chatWindow = document.getElementById("chat-window");
+  const userInput = document.getElementById("user-input");
+  const chatBody = document.getElementById("chat-body");
+
+  if (!chatbotIcon || !chatWindow) return;
+
   chatbotIcon.addEventListener("click", () => {
     chatWindow.classList.toggle("hidden");
+    if (!chatWindow.classList.contains('hidden')) {
+      userInput?.focus();
+      // Add welcome message if chat is empty
+      if (chatBody && chatBody.children.length === 0) {
+        setTimeout(() => {
+          appendMessage("Hello! 👋 How can I help you find care today?", "bot", chatBody);
+        }, 500);
+      }
+    }
   });
 
   // Enhanced chatbot responses
@@ -84,80 +131,4 @@ if (chatbotIcon && chatWindow) {
         "Try home rest, hydration, and see a doctor if symptoms persist."
       ],
       eye: [
-        "For eye care, try VisionCare Clinic in Quatre Bornes or the Eye Hospital in Pamplemousses.",
-        "Eye specialists are available at several clinics - check our Find Care page for options."
-      ],
-      emergency: [
-        "For emergencies, call SAMU at 114 immediately!",
-        "Emergency services are available 24/7 - call 114 for urgent medical assistance."
-      ],
-      appointment: [
-        "You can book appointments through our platform - just visit the Find Care page!",
-        "To book an appointment, find your preferred provider and click 'Book Appointment'."
-      ],
-      consultation: [
-        "I can help you book a virtual consultation right now!",
-        "Need a virtual consultation? Let me redirect you to our booking page.",
-        "You can request a virtual consultation with one of our healthcare professionals."
-      ]
-    };
-
-    if (input.includes("hello") || input.includes("hi") || input.includes("hey")) return random(responses.greetings);
-    if (input.includes("dentist") || input.includes("tooth") || input.includes("dental")) return random(responses.dental);
-    if (input.includes("hospital") || input.includes("clinic") || input.includes("medical")) return random(responses.hospital);
-    if (input.includes("flu") || input.includes("fever") || input.includes("cold")) return random(responses.flu);
-    if (input.includes("eye") || input.includes("vision") || input.includes("see")) return random(responses.eye);
-    if (input.includes("emergency") || input.includes("urgent") || input.includes("help")) return random(responses.emergency);
-    if (input.includes("appointment") || input.includes("book") || input.includes("schedule")) return random(responses.appointment);
-    if (input.includes("consultation") || input.includes("virtual") || input.includes("online")) return random(responses.consultation);
-
-    return "I'm still learning 🤖 — try asking about a specific service or location.";
-  }
-
-  function random(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
-
-  // Send message
-  if (userInput && chatBody) {
-    userInput.addEventListener("keypress", function (e) {
-      if (e.key === "Enter" && userInput.value.trim() !== "") {
-        const userMessage = userInput.value;
-        appendMessage(userMessage, "user");
-        const botResponse = getBotResponse(userMessage);
-        setTimeout(() => {
-          appendMessage(botResponse, "bot");
-          
-          // Add "Book Now" button for consultation responses
-          if (botResponse.includes("consultation")) {
-            const btn = document.createElement("button");
-            btn.textContent = "Book Now";
-            btn.onclick = () => window.location.href = "consult.html";
-            btn.style = "margin-top:5px;background:#00b4d8;color:white;padding:6px 10px;border:none;border-radius:5px;cursor:pointer;";
-            chatBody.appendChild(btn);
-          }
-        }, 500);
-        userInput.value = "";
-      }
-    });
-
-    function appendMessage(message, sender) {
-      const msgDiv = document.createElement("div");
-      msgDiv.classList.add("message", sender);
-      msgDiv.textContent = message;
-      chatBody.appendChild(msgDiv);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }
-  }
-}
-
-// Book appointment buttons
-document.addEventListener('DOMContentLoaded', function() {
-  const bookButtons = document.querySelectorAll('.book-btn');
-  bookButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const facilityName = this.parentElement.querySelector('h3').textContent;
-      alert(`Booking appointment at: ${facilityName}\n\nThis would redirect to the booking system in a real application.`);
-    });
-  });
-});
+        "For eye care, try VisionCare Clinic in Quatre Bornes or the Eye Hospital in Pamplemous
