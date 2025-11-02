@@ -6,7 +6,7 @@
   <meta name="description" content="InteliHealth – Your AI-powered healthcare concierge in Mauritius. Find doctors, clinics, and virtual consultations easily.">
   <meta name="keywords" content="Mauritius healthcare, find doctor, clinic, hospital, virtual consultation, AI health">
   <meta name="author" content="InteliHealth Mauritius">
-  <title>Find Care | InteliHealth</title>
+  <title>InteliHealth | Smart Care. Simplified.</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,156 +15,36 @@
       <img src="assets/logo.png" alt="InteliHealth Logo" class="logo">
       <h1>InteliHealth</h1>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="findcare.html" class="active">Find Care</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="findcare.html">Find Care</a></li>
         <li><a href="consult.html">Virtual Consult</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
   </header>
 
-  <section id="find-care">
-    <h2>Find the Right Care</h2>
-    <p>Search for hospitals, clinics, or specialists near you.</p>
-    <input type="text" id="searchInput" placeholder="Search by service, doctor, or location...">
-    <div id="results"></div>
+  <section id="hero">
+    <h1>Your Smart Guide to Healthcare in Mauritius</h1>
+    <p>Find trusted doctors, clinics, and virtual consultations — all in one place.</p>
+    <a href="findcare.html" class="btn-primary">Find Care Now</a>
   </section>
 
-  <section class="content">
-    <h2>Medical Facilities in Mauritius</h2>
-    
-    <!-- Hospitals Section -->
-    <h3>Regional Hospitals</h3>
-    
-    <div class="facility-card">
-      <span class="facility-type">HOSPITAL</span>
-      <h3>Dr. A. G. Jeetoo Hospital</h3>
-      <div class="contact-info">
-        <p><strong>Phone:</strong> 208 1240</p>
-        <p><strong>Address:</strong> Voley Pougnet St, Port Louis</p>
-        <p><strong>Services:</strong> General Medicine, Emergency Care, Outpatient Services</p>
+  <section id="how-it-works">
+    <h2>How InteliHealth Works</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>1. Tell Us Your Need</h3>
+        <p>Search for a specialist, service, or symptom in seconds.</p>
       </div>
-      <button class="book-btn">Book Appointment</button>
-    </div>
-
-    <div class="facility-card">
-      <span class="facility-type">HOSPITAL</span>
-      <h3>Sir Seewoosagur Ramgoolam National Hospital</h3>
-      <div class="contact-info">
-        <p><strong>Phone:</strong> 424 9050</p>
-        <p><strong>Address:</strong> Pamplemousses</p>
-        <p><strong>Services:</strong> National Referral Hospital, Specialized Surgery, ICU</p>
+      <div class="step">
+        <h3>2. Get Matched Instantly</h3>
+        <p>Our AI recommends providers that best fit your needs and location.</p>
       </div>
-      <button class="book-btn">Book Appointment</button>
-    </div>
-
-    <div class="facility-card">
-      <span class="facility-type">HOSPITAL</span>
-      <h3>Victoria Hospital</h3>
-      <div class="contact-info">
-        <p><strong>Phone:</strong> 601 2200</p>
-        <p><strong>Address:</strong> Candos</p>
-        <p><strong>Services:</strong> General Hospital, Maternity, Pediatric Care</p>
-      </div>
-      <button class="book-btn">Book Appointment</button>
-    </div>
-
-    <div class="facility-card">
-      <span class="facility-type">HOSPITAL</span>
-      <h3>Dr. Bruno Cheong Hospital</h3>
-      <div class="contact-info">
-        <p><strong>Phone:</strong> 666 9515</p>
-        <p><strong>Address:</strong> Flacq</p>
-        <p><strong>Services:</strong> Regional Hospital, Emergency Services, Diagnostics</p>
-      </div>
-      <button class="book-btn">Book Appointment</button>
-    </div>
-
-    <div class="facility-card">
-      <span class="facility-type">HOSPITAL</span>
-      <h3>J. Nehru Hospital</h3>
-      <div class="contact-info">
-        <p><strong>Phone:</strong> 683 3331</p>
-        <p><strong>Address:</strong> Rose Belle</p>
-        <p><strong>Services:</strong> Southern Regional Hospital, Comprehensive Care</p>
-      </div>
-      <button class="book-btn">Book Appointment</button>
-    </div>
-
-    <!-- Specialist Hospitals -->
-    <h3>Specialist Hospitals & Centers</h3>
-    
-    <div class="facility-card">
-      <span class="facility-type">NEUROLOGY</span>
-      <h3>Brown Séquard Hospital</h3>
-      <div class="contact-info">
-        <p><strong>Phone:</strong> 424 0441 / 424 0640</p>
-        <p><strong>Address:</strong> Beau Bassin</p>
-        <p><strong>Services:</strong> Neurology, Neurosurgery, Brain & Spine Care</p>
-      </div>
-      <button class="book-btn">Book Appointment</button>
-    </div>
-
-    <div class="facility-card">
-      <span class="facility-type">CARDIOLOGY</span>
-      <h3>Cardiothoracic Centre</h3>
-      <div class="contact-info">
-        <p><strong>Phone:</strong> 401 0500</p>
-        <p><strong>Address:</strong> Pamplemousses</p>
-        <p><strong>Services:</strong> Heart Surgery, Cardiac Care, Vascular Surgery</p>
-      </div>
-      <button class="book-btn">Book Appointment</button>
-    </div>
-
-    <div class="facility-card">
-      <span class="facility-type">EYE CARE</span>
-      <h3>Eye Hospital</h3>
-      <div class="contact-info">
-        <p><strong>Phone:</strong> 675 0500</p>
-        <p><strong>Address:</strong> Pamplemousses</p>
-        <p><strong>Services:</strong> Ophthalmology, Eye Surgery, Vision Care</p>
-      </div>
-      <button class="book-btn">Book Appointment</button>
-    </div>
-
-    <!-- Area Health Centers -->
-    <h3>Area Health Centers</h3>
-    
-    <div class="facility-card">
-      <span class="facility-type">HEALTH CENTER</span>
-      <h3>Curepipe Area Health Centre</h3>
-      <div class="contact-info">
-        <p><strong>Phone:</strong> 675 1212</p>
-        <p><strong>Address:</strong> Curepipe</p>
-        <p><strong>Services:</strong> Community Health, Maternal Care, Vaccinations</p>
-      </div>
-      <button class="book-btn">Book Appointment</button>
-    </div>
-
-    <div class="facility-card">
-      <span class="facility-type">HEALTH CENTER</span>
-      <h3>Quatre Bornes Area Health Centre</h3>
-      <div class="contact-info">
-        <p><strong>Phone:</strong> 424 7818</p>
-        <p><strong>Address:</strong> Quatre Bornes</p>
-        <p><strong>Services:</strong> Primary Healthcare, Family Medicine</p>
-      </div>
-      <button class="book-btn">Book Appointment</button>
-    </div>
-
-    <!-- Emergency Contacts -->
-    <h3>Emergency Contacts</h3>
-    
-    <div class="facility-card">
-      <span class="facility-type" style="color: #dc3545;">EMERGENCY</span>
-      <h3>SAMU (Emergency Medical Service)</h3>
-      <div class="contact-info">
-        <p><strong>Emergency Phone:</strong> 114</p>
-        <p><strong>Service:</strong> 24/7 Emergency Medical Assistance</p>
-        <p><strong>Available:</strong> 24 hours, 7 days a week</p>
+      <div class="step">
+        <h3>3. Connect or Book</h3>
+        <p>Book appointments, message clinics, or chat with virtual doctors.</p>
       </div>
     </div>
-
   </section>
 
   <footer>
