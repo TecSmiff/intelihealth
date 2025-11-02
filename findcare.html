@@ -17,19 +17,57 @@
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="findcare.html" class="active">Find Care</a></li>
+        <li><a href="consult.html">Virtual Consult</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
   </header>
 
-  <section id="find-care">
-    <h2>Find the Right Care</h2>
-    <p>Search for hospitals, clinics, or specialists near you.</p>
+  <main>
+    <section id="find-care">
+      <h2>Find the Right Care</h2>
+      <p>Search for hospitals, clinics, or specialists near you.</p>
+      <input type="text" id="searchInput" placeholder="Search by service, doctor, or location...">
+      <div id="results"></div>
+    </section>
 
-    <input type="text" id="searchInput" placeholder="Search by service, doctor, or location...">
+    <section id="featured-facilities" class="content">
+      <h2>Featured Medical Facilities</h2>
+      
+      <div class="facility-card">
+        <span class="facility-type">HOSPITAL</span>
+        <h3>Dr. A. G. Jeetoo Hospital</h3>
+        <div class="contact-info">
+          <p><strong>Phone:</strong> 208 1240</p>
+          <p><strong>Address:</strong> Voley Pougnet St, Port Louis</p>
+          <p><strong>Services:</strong> General Medicine, Emergency Care</p>
+        </div>
+        <button class="book-btn">Book Appointment</button>
+      </div>
 
-    <div id="results"></div>
-  </section>
+      <div class="facility-card">
+        <span class="facility-type">HOSPITAL</span>
+        <h3>Sir Seewoosagur Ramgoolam National Hospital</h3>
+        <div class="contact-info">
+          <p><strong>Phone:</strong> 424 9050</p>
+          <p><strong>Address:</strong> Pamplemousses</p>
+          <p><strong>Services:</strong> Specialized Surgery, ICU</p>
+        </div>
+        <button class="book-btn">Book Appointment</button>
+      </div>
+
+      <div class="facility-card">
+        <span class="facility-type">SPECIALIST</span>
+        <h3>Brown Séquard Hospital</h3>
+        <div class="contact-info">
+          <p><strong>Phone:</strong> 424 0441</p>
+          <p><strong>Address:</strong> Beau Bassin</p>
+          <p><strong>Services:</strong> Neurology, Neurosurgery</p>
+        </div>
+        <button class="book-btn">Book Appointment</button>
+      </div>
+    </section>
+  </main>
 
   <footer>
     <p>© 2025 InteliHealth | Made with ❤️ in Mauritius</p>
