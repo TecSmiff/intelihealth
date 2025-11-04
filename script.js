@@ -200,18 +200,35 @@ function initializeChatbot() {
           appendMessage(message, "user", chatBody);
           this.value = "";
           
-          // Simulate bot response
-          setTimeout(() => {
-            const botResponse = getBotResponse(message);
+          // Get AI bot response
+          getBotResponse(message).then(botResponse => {
             appendMessage(botResponse, "bot", chatBody);
-          }, 1000);
+          });
         }
       }
     });
   }
 
-  // Enhanced chatbot responses
-  function getBotResponse(input) {
+  // AI-Powered chatbot responses using Hugging Face
+  async function getBotResponse(input) {
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input })
+      });
+      
+      const data = await response.json();
+      return data.reply;
+    } catch (error) {
+      console.error('AI chatbot error:', error);
+      // Fallback to your existing smart responses
+      return getFallbackBotResponse(input);
+    }
+  }
+
+  // Keep your existing smart responses as fallback
+  function getFallbackBotResponse(input) {
     input = input.toLowerCase();
     
     // Greetings
