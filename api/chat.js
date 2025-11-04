@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     }
 
     // 🌟 Replace this with your actual Gemini API key
-    const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+    const GEMINI_API_KEY = "AIzaSyDGoWGkTTjjlCFXs4sf1bhiHZYVqNW_quA";
 
     if (!GEMINI_API_KEY) {
       return res.status(500).json({ message: "Missing Gemini API key." });
