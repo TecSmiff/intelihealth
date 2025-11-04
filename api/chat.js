@@ -1,20 +1,31 @@
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  // Set proper CORS headers
+  res.setHeader('Access-Control-Allow-Origin', 'https://intelihealth-git-main-narvishs-projects.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
 
-  if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ message: 'Only POST allowed' });
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Only POST requests allowed' });
+  }
 
   try {
     const { message } = req.body;
-    if (!message) return res.status(400).json({ message: 'No message provided' });
+
+    if (!message) {
+      return res.status(400).json({ message: 'No message provided.' });
+    }
 
     const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
     if (!GROQ_API_KEY) {
       console.error('Missing Groq API key');
-      return res.status(500).json({ message: 'Server configuration error' });
+      return res.status(500).json({ message: 'Server configuration error.' });
     }
 
     console.log('Calling Groq API with message:', message);
@@ -26,7 +37,7 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${GROQ_API_KEY}`
       },
       body: JSON.stringify({
-        model: 'llama3-8b-8192', // Free, fast model
+        model: 'llama3-8b-8192',
         messages: [
           {
             role: 'system',
@@ -52,8 +63,6 @@ Always be helpful and provide actionable information.`
         stream: false
       })
     });
-
-    console.log('Groq response status:', response.status);
 
     if (!response.ok) {
       const errorText = await response.text();
