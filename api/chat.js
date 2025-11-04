@@ -13,11 +13,13 @@ export default async function handler(req, res) {
     const HF_TOKEN = process.env.HF_TOKEN;
 
     if (!HF_TOKEN) {
-      console.error('Missing Hugging Face token');
-      return res.status(500).json({ message: 'Server configuration error' });
+      console.error('MISSING HF_TOKEN - Using fallback');
+      return res.status(200).json({ 
+        reply: "Hello! I'm InteliHealth, your healthcare assistant for Mauritius. I can help you find doctors, clinics, and medical services. How can I assist you today?" 
+      });
     }
 
-    console.log('Sending to Hugging Face:', message);
+    console.log('Calling Hugging Face with message:', message);
 
     const response = await fetch(
       "https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium",
@@ -28,36 +30,38 @@ export default async function handler(req, res) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ 
-          inputs: message,
+          inputs: `You are InteliHealth, a helpful healthcare assistant in Mauritius. User: ${message}`,
           parameters: {
-            max_length: 200,
+            max_new_tokens: 100,
             temperature: 0.7
           }
         }),
       }
     );
 
+    console.log('Hugging Face response status:', response.status);
+
     if (!response.ok) {
       const errorText = await response.text();
       console.error('Hugging Face API error:', response.status, errorText);
-      throw new Error(`Hugging Face API responded with ${response.status}`);
+      throw new Error(`API error: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log('Hugging Face response:', data);
+    console.log('Hugging Face response data:', data);
 
-    let reply = "Hello! I'm InteliHealth, your healthcare assistant in Mauritius. How can I help you find doctors or clinics today?";
+    let reply = data?.generated_text || "Hello! I'm InteliHealth. How can I help you with healthcare in Mauritius today?";
     
-    if (data && data.generated_text) {
-      reply = data.generated_text;
-    }
-
+    // Clean up the response
+    reply = reply.replace(/You are InteliHealth, a helpful healthcare assistant in Mauritius\. User:.*?InteliHealth:/gi, '');
+    reply = reply.replace(/User:.*?InteliHealth:/gi, '');
+    
     return res.status(200).json({ reply });
     
   } catch (error) {
-    console.error('Server error:', error);
+    console.error('Server error:', error.message);
     return res.status(200).json({ 
-      reply: "Hello! I'm InteliHealth. I can help you find healthcare services, doctors, and clinics in Mauritius. What do you need help with today?" 
+      reply: "Hello! I'm InteliHealth. I specialize in helping people find healthcare services in Mauritius. You can ask me about doctors, clinics, hospitals, or specific medical services." 
     });
   }
 }
